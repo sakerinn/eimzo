@@ -1,13 +1,49 @@
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+# Зависимости
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
-# Swap the comments on the following lines if you wish to use zero-installs
-# In that case, don't forget to run `yarn config set enableGlobalCache false`!
-# Documentation here: https://yarnpkg.com/features/caching#zero-installs
+# Сборка
+dist/
+build/
+*.tsbuildinfo
 
-#!.yarn/cache
-.pnp.*
+# Тесты
+tests/
+coverage/
+.nyc_output/
+*.lcov
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Временные файлы
+*.log
+*.tmp
+*.temp
+.cache/
+.temp/
+
+# Окружение
+.env
+.env.local
+.env.*.local
+
+# Другое
+*.pem
+*.key
+*.crt
+

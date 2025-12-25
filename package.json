@@ -1,13 +1,17 @@
 {
   "name": "@sakerin/eimzo",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Библиотека для работы с клиентом EIMZO",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test": "node node_modules/vitest/vitest.mjs run",
+    "test:watch": "node node_modules/vitest/vitest.mjs",
+    "test:ui": "node node_modules/vitest/vitest.mjs --ui",
+    "test:coverage": "node node_modules/vitest/vitest.mjs run --coverage"
   },
   "keywords": [
     "eimzo",
@@ -20,5 +24,11 @@
   "files": [
     "dist",
     "src"
-  ]
+  ],
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "@vitest/ui": "^3.2.4",
+    "jsdom": "^27.0.1",
+    "vitest": "^3.2.4"
+  }
 }
