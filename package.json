@@ -1,6 +1,6 @@
 {
-  "name": "@sakerin/eimzo",
-  "version": "0.1.0",
+  "name": "@nicksakerin/eimzo",
+  "version": "0.1.3",
   "description": "Библиотека для работы с клиентом EIMZO",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,9 +21,16 @@
   ],
   "author": "Nikita Sakerin",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sakerinn/eimzo.git"
+  },
+  "homepage": "https://github.com/sakerinn/eimzo#readme",
+  "bugs": {
+    "url": "https://github.com/sakerinn/eimzo/issues"
+  },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "devDependencies": {
     "@types/node": "^25.0.3",

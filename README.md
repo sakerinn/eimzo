@@ -1,11 +1,11 @@
-# @sakerin/eimzo
+# @nicksakerin/eimzo
 
 Библиотека для работы с клиентом EIMZO (электронная цифровая подпись для Узбекистана).
 
 ## Установка
 
 ```bash
-npm install @sakerin/eimzo
+npm install @nicksakerin/eimzo
 ```
 
 ## Требования
@@ -22,7 +22,7 @@ import {
   sign,
   setDefaultKeyId,
   setConfig,
-} from '@sakerin/eimzo';
+} from '@nicksakerin/eimzo';
 
 // 1. Инициализация API
 const initResult = await startApi();
@@ -325,7 +325,7 @@ import {
   getAllCertificates,
   sign,
   clearDefaultKeyId,
-} from '@sakerin/eimzo';
+} from '@nicksakerin/eimzo';
 
 async function main() {
   // 1. Инициализация
@@ -378,7 +378,7 @@ main();
 ### Работа с USB-токенами
 
 ```typescript
-import { getEimzoUSBTokens, sign } from '@sakerin/eimzo';
+import { getEimzoUSBTokens, sign } from '@nicksakerin/eimzo';
 
 // Получение списка USB-токенов
 const tokensResult = await getEimzoUSBTokens();
@@ -395,7 +395,7 @@ const signResult = await sign('Данные', 'ckc');
 ### Присоединение нескольких подписей
 
 ```typescript
-import { sign, attach } from '@sakerin/eimzo';
+import { sign, attach } from '@nicksakerin/eimzo';
 
 // Первая подпись
 const firstResult = await sign('Документ', cert1);
@@ -406,36 +406,6 @@ const secondResult = await attach(firstResult.data.signature, cert2);
 if (!secondResult.success) throw secondResult.error;
 
 console.log('Документ подписан двумя подписями');
-```
-
-## Разработка
-
-### Установка зависимостей
-
-```bash
-npm install
-```
-
-### Сборка
-
-```bash
-npm run build
-```
-
-### Тестирование
-
-```bash
-# Запуск тестов
-npm test
-
-# Запуск в режиме watch
-npm run test:watch
-
-# Запуск с UI
-npm run test:ui
-
-# Запуск с покрытием
-npm run test:coverage
 ```
 
 ## Лицензия
