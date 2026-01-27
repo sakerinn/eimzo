@@ -164,7 +164,6 @@ export async function getAllCertificates(
           // Добавляем 1 день для учета времени
           validDate.setDate(validDate.getDate() + 1);
           overdue = new Date() > validDate;
-          console.log(cert, validDate, overdue);
         }
         return {
           ...cert,
