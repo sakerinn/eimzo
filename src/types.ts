@@ -3,7 +3,7 @@
 /**
  * Интерфейс сертификата
  */
-export interface ICert {
+export interface EimzoCert {
   inn: string;
   serialNumber: string;
   parsedAlias?: {
@@ -49,5 +49,5 @@ export type TimestamperFunction = (
  * Результат получения списка сертификатов
  */
 export interface IGetCertsRes {
-  certificates: ICert[];
+  certificates: EimzoCert[];
 }

@@ -2,7 +2,7 @@
 
 import { CAPIWS } from './vendors/e-imzo';
 import { Result, EimzoError, EimzoErrorCode, ok, err } from './errors';
-import { ICert, IGetCertsRes } from './types';
+import { EimzoCert, IGetCertsRes } from './types';
 import { parseData, parseValidDate } from './utils/parseData';
 import { getInitialized } from './config';
 import { ERROR_MESSAGES } from './messages';
@@ -10,7 +10,9 @@ import { ERROR_MESSAGES } from './messages';
 /**
  * Получить все сертификаты через certkey плагин
  */
-async function getAllCertificatesCertkey(): Promise<Result<IGetCertsRes, EimzoError>> {
+async function getAllCertificatesCertkey(): Promise<
+  Result<IGetCertsRes, EimzoError>
+> {
   return new Promise<Result<IGetCertsRes, EimzoError>>((resolve) => {
     if (!getInitialized()) {
       resolve(
@@ -62,7 +64,9 @@ async function getAllCertificatesCertkey(): Promise<Result<IGetCertsRes, EimzoEr
 /**
  * Получить все сертификаты через pfx плагин
  */
-async function getAllCertificatesPfx(): Promise<Result<IGetCertsRes, EimzoError>> {
+async function getAllCertificatesPfx(): Promise<
+  Result<IGetCertsRes, EimzoError>
+> {
   return new Promise<Result<IGetCertsRes, EimzoError>>((resolve) => {
     if (!getInitialized()) {
       resolve(
@@ -118,7 +122,7 @@ async function getAllCertificatesPfx(): Promise<Result<IGetCertsRes, EimzoError>
  */
 export async function getAllCertificates(
   uid?: string
-): Promise<Result<ICert[], EimzoError>> {
+): Promise<Result<EimzoCert[], EimzoError>> {
   try {
     // Получаем сертификаты из обоих источников
     const pfxResult = await getAllCertificatesPfx();
@@ -131,9 +135,9 @@ export async function getAllCertificates(
         new EimzoError(
           EimzoErrorCode.EIMZO_SERVICE_ERROR,
           ERROR_MESSAGES.NO_CERTS_SOURCES,
-          { 
-            pfx: pfxResult.success ? undefined : pfxResult.error, 
-            certkey: certkeyResult.success ? undefined : certkeyResult.error 
+          {
+            pfx: pfxResult.success ? undefined : pfxResult.error,
+            certkey: certkeyResult.success ? undefined : certkeyResult.error,
           }
         )
       );
@@ -150,7 +154,7 @@ export async function getAllCertificates(
     const parsedCertkeyCerts = parseData(certkeyCerts, 'certkey');
 
     // Объединяем и обрабатываем
-    const allCerts: ICert[] = [...parsedPfxCerts, ...parsedCertkeyCerts]
+    const allCerts: EimzoCert[] = [...parsedPfxCerts, ...parsedCertkeyCerts]
       .map((cert) => {
         // Определяем просроченность сертификата
         const validTo = cert.parsedAlias?.validto;
@@ -160,6 +164,7 @@ export async function getAllCertificates(
           // Добавляем 1 день для учета времени
           validDate.setDate(validDate.getDate() + 1);
           overdue = new Date() > validDate;
+          console.log(cert, validDate, overdue);
         }
         return {
           ...cert,
@@ -177,8 +182,7 @@ export async function getAllCertificates(
     if (uid) {
       const filteredCerts = allCerts.filter(
         (cert) =>
-          cert.inn === uid ||
-          cert.parsedAlias?.['1.2.860.3.16.1.2'] === uid
+          cert.inn === uid || cert.parsedAlias?.['1.2.860.3.16.1.2'] === uid
       );
       return ok(filteredCerts);
     }
@@ -199,7 +203,9 @@ export async function getAllCertificates(
  * Получить список USB-токенов (CKC устройств)
  * @returns Result с массивом строк описаний устройств
  */
-export async function getEimzoUSBTokens(): Promise<Result<string[], EimzoError>> {
+export async function getEimzoUSBTokens(): Promise<
+  Result<string[], EimzoError>
+> {
   return new Promise<Result<string[], EimzoError>>((resolve) => {
     if (!getInitialized()) {
       resolve(

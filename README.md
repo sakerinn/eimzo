@@ -103,7 +103,7 @@ const result = await getAllCertificates();
 const result = await getAllCertificates('123456789');
 ```
 
-Возвращает `Result<ICert[], EimzoError>` где `ICert` содержит:
+Возвращает `Result<EimzoCert[], EimzoError>` где `EimzoCert` содержит:
 - `inn` - ИНН
 - `serialNumber` - серийный номер
 - `type` - тип сертификата ('certkey' | 'pfx')
@@ -226,12 +226,12 @@ setConfig({
 
 ## Типы
 
-### `ICert`
+### `EimzoCert`
 
 Интерфейс сертификата:
 
 ```typescript
-interface ICert {
+interface EimzoCert {
   inn: string;
   serialNumber: string;
   type?: 'certkey' | 'pfx' | 'idcard' | 'ckc';

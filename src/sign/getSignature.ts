@@ -1,7 +1,7 @@
 // Функция создания подписи по типу сертификата
 
 import { Result, EimzoError, EimzoErrorCode, ok, err } from '../errors';
-import { ICert } from '../types';
+import { EimzoCert } from '../types';
 import { SignOptions, SignResult } from './types';
 import { loadCertkeyKey, getPfxKeyId } from './keyLoaders';
 import { createPkcs7 } from './pkcs7';
@@ -15,7 +15,7 @@ import { ERROR_MESSAGES } from '../messages';
  * @returns Result с подписью в формате PKCS7 base64
  */
 export async function getSignature(
-  signer: ICert | 'idcard' | 'ckc',
+  signer: EimzoCert | 'idcard' | 'ckc',
   data: string,
   options?: SignOptions
 ): Promise<Result<SignResult, EimzoError>> {

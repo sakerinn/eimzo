@@ -1,6 +1,6 @@
 // Парсинг данных сертификатов
 
-import { ICert } from '../types';
+import { EimzoCert } from '../types';
 
 /**
  * Вспомогательная функция для получения значения из X500 строки
@@ -36,7 +36,7 @@ function getX500Val(s: string, f: string): string {
  * @param type - тип сертификата ('pfx' или 'certkey')
  * @returns массив распарсенных сертификатов
  */
-export function parseData(data: any[], type: 'pfx' | 'certkey'): ICert[] {
+export function parseData(data: any[], type: 'pfx' | 'certkey'): EimzoCert[] {
   if (!data || data.length === 0) {
     return [];
   }
@@ -95,20 +95,20 @@ export function parseData(data: any[], type: 'pfx' | 'certkey'): ICert[] {
       serialNumber,
       type,
       parsedAlias: json,
-    } as ICert;
+    } as EimzoCert;
   });
 }
 
 /**
- * Парсинг даты из формата DD.MM.YYYY
+ * Парсинг даты из формата YYYY.MM.DD
  */
 export function parseValidDate(date: string): Date {
   if (!date) {
     return new Date();
   }
-  // Формат: "DD.MM.YYYY HH:mm:ss" -> берем только дату
+  // Формат: "YYYY.MM.DD HH:mm:ss" -> берем только дату
   const datePart = date.split(' ')[0];
-  const [day, month, year] = datePart.split('.');
+  const [year, month, day] = datePart.split('.');
 
   return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
 }

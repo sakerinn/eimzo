@@ -28,7 +28,7 @@ export type {
 
 // Экспорт типов
 export type {
-  ICert,
+  EimzoCert,
   EimzoConfig,
   TimestamperFunction,
   TimestampResponse,

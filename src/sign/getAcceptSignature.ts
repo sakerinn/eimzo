@@ -1,7 +1,7 @@
 // Функция для присоединения подписи к существующей PKCS7 подписи
 
 import { Result, EimzoError, EimzoErrorCode, ok, err } from '../errors';
-import { ICert } from '../types';
+import { EimzoCert } from '../types';
 import { SignOptions, SignResult } from './types';
 import { loadCertkeyKey, getPfxKeyId } from './keyLoaders';
 import { appendPkcs7Attached } from './pkcs7';
@@ -19,7 +19,7 @@ import { JoinSignaturesFunction } from './types';
  * @returns Result с подписью в формате PKCS7 base64
  */
 export async function getAcceptSignature(
-  signer: ICert | 'idcard' | 'ckc',
+  signer: EimzoCert | 'idcard' | 'ckc',
   existingPkcs7: string,
   options?: SignOptions,
   originalString?: string,

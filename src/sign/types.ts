@@ -1,6 +1,6 @@
 // Типы для функций подписания
 
-import { ICert } from '../types';
+import { EimzoCert } from '../types';
 import { Result, EimzoError } from '../errors';
 
 /**
@@ -27,7 +27,7 @@ export type KeyIdentifier = string | 'idcard' | 'ckc';
 /**
  * Тип для сертификата или USB-токена
  */
-export type Signer = ICert | 'idcard' | 'ckc';
+export type Signer = EimzoCert | 'idcard' | 'ckc';
 
 /**
  * Тип функции для объединения подписей (для idcard/ckc с originalString)

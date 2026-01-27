@@ -2,7 +2,7 @@
 
 import { CAPIWS } from '../vendors/e-imzo';
 import { Result, EimzoError, EimzoErrorCode, ok, err } from '../errors';
-import { ICert } from '../types';
+import { EimzoCert } from '../types';
 import { ERROR_MESSAGES } from '../messages';
 
 /**
@@ -11,7 +11,7 @@ import { ERROR_MESSAGES } from '../messages';
  * @returns Result с ID загруженного ключа
  */
 export async function loadCertkeyKey(
-  cert: ICert
+  cert: EimzoCert
 ): Promise<Result<string, EimzoError>> {
   if (cert.type !== 'certkey') {
     return err(
@@ -75,7 +75,7 @@ export async function loadCertkeyKey(
  * @param cert - сертификат типа pfx
  * @returns Result с ID ключа
  */
-export async function getPfxKeyId(cert: ICert): Promise<Result<string, EimzoError>> {
+export async function getPfxKeyId(cert: EimzoCert): Promise<Result<string, EimzoError>> {
   if (cert.type !== 'pfx') {
     return err(
       new EimzoError(
@@ -103,7 +103,7 @@ export async function getPfxKeyId(cert: ICert): Promise<Result<string, EimzoErro
  * @param cert - сертификат типа pfx
  * @returns Result с ID загруженного ключа
  */
-export async function loadPfxKey(cert: ICert): Promise<Result<string, EimzoError>> {
+export async function loadPfxKey(cert: EimzoCert): Promise<Result<string, EimzoError>> {
   if (cert.type !== 'pfx') {
     return err(
       new EimzoError(
